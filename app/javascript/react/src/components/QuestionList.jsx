@@ -5,6 +5,7 @@ import QuestionDetail from './QuestionDetail'
 import EmptyQuestionMessage from './EmptyQuestionMessage'
 import Loader from './Loader'
 import NewQuestion from './NewQuestion'
+import Answer from './Answer'
 
 const QuestionList = () => {
 
@@ -73,7 +74,10 @@ const QuestionList = () => {
         </select>
         { questionsList.length > 0 ?
           questionsList.map((question) =>
-            <QuestionDetail question={question} key={question.id} />
+            <div key={question.id}>
+              <QuestionDetail question={question} />
+              <Answer question={question} />
+            </div>
           ) : <Loader isShowLoader={isShowLoader}/>
         }
         {

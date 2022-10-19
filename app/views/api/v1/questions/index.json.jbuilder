@@ -4,4 +4,5 @@ json.array! @questions do |question|
   json.tag question.tag
   json.likes_count question.likes_count
   json.dislikes_count question.dislikes_count
+  json.answer question.answer
 end
