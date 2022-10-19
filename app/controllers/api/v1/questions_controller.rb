@@ -16,7 +16,27 @@ class Api::V1::QuestionsController < ApplicationController
     elsif params[:count_for] == 'dislike'
       @question.update(dislikes_count: @question.dislikes_count + 1)
     end
-    # render json: @question, status: :ok
+  end
+
+  def create
+    @question = Question.new(question_params)
+    if @question.save
+      render json: { data: @question, status: 'success' }, status: :ok
+    else
+      render json: { data: @question.errors.full_messages, status: 'failure' }, status: :unprocessable_entity
+    end
+  end
+
+  def answer
+    @question = Question.find(params[:id])
+    @question.update(answer: params[:answer])
+    render json: @question, status: :ok
+  end
+
+  private
+
+  def question_params
+    params.require(:question).permit(:title, :tag)
   end
 
 end
