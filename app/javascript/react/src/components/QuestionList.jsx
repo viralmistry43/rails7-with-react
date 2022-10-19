@@ -21,7 +21,7 @@ const QuestionList = () => {
   const [isShowAlert, setIsShowAlert] = useState(false)
   const [isShowLoader, setIsShowLoader] = useState(true)
 
-  const questionsUrl = 'http://localhost:3000/api/v1/questions'
+  const questionsUrl = '/api/v1/questions'
 
   const fetchQuestionList = () => {
     setIsShowLoader(false)
