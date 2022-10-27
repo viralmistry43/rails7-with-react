@@ -14,9 +14,9 @@ const Nav = (props) => {
                     Home
                   </li>
                 </Link>
-                <Link to="/shop">
+                <Link to="/event">
                   <li className="nav-item nav-link">
-                    Shop
+                    Event
                   </li>
                 </Link>
                 <Link to="/question-list">

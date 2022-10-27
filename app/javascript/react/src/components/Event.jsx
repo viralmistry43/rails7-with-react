@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import * as ReactDOM from 'react-dom'
 import { Link } from "react-router-dom"
 
-const Shop = () => {
+const Event = () => {
 
   const [items, setItems] = useState([])
 
@@ -21,12 +21,12 @@ const Shop = () => {
   return(
     <div className="row">
       <div className="col-lg-10 mx-auto">
-        <h1> Shop </h1>
+        <h1> Events </h1>
         {
           items.map(item_type => (
             item_type.entries.map(item => (
               <h3 key={item.identifier}>
-                <Link to={`/shop/${item.identifier}`}> {item.name} </Link>
+                <Link to={`/event/${item.identifier}`}> {item.name} </Link>
               </h3>
             ))
           ))
@@ -36,4 +36,4 @@ const Shop = () => {
   )
 }
 
-export default Shop;
+export default Event;

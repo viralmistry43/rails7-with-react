@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import { useParams } from 'react-router-dom';
 
 
-const ItemDetail = () => {
+const EventDetail = () => {
 
   const { id } = useParams();
   const [item, setItem] = useState({})
@@ -25,7 +25,7 @@ const ItemDetail = () => {
   return(
     <div className="row">
       <div className="col-lg-10 mx-auto">
-        <h1> ItemDetail </h1>
+        <h1> Event Detail </h1>
           <p> <strong> Name </strong>: {item.name}</p>
           <p> <strong> Description </strong>: {item.description}</p>
       </div>
@@ -33,4 +33,4 @@ const ItemDetail = () => {
   )
 }
 
-export default ItemDetail;
+export default EventDetail;
