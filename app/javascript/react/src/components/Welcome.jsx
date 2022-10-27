@@ -3,6 +3,7 @@ import * as ReactDOM from 'react-dom/client';
 import QuestionList from './QuestionList'
 import Nav from './Nav'
 import Shop from './Shop'
+import ItemDetail from './ItemDetail'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 
@@ -14,6 +15,7 @@ class Welcome extends React.Component {
         <Routes>
           <Route path="/" exact element={<Home/>}/>
           <Route path="/shop" exact element={<Shop/>}/>
+          <Route path="/shop/:id" element={<ItemDetail/>}/>
           <Route path="/question-list" element={<QuestionList/>}/>
         </Routes>
       </Router>
