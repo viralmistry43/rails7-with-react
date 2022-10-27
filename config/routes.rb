@@ -10,4 +10,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  match '*path', to: 'home#index', via: :all
 end
