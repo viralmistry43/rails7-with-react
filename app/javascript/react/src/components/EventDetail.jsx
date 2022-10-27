@@ -9,11 +9,15 @@ const EventDetail = () => {
 
   const { id } = useParams();
   const [item, setItem] = useState({})
+  const [video, setVideo] = useState(false)
 
   const fetchItem = () => {
     fetch(`https://fortnite-api.theapinetwork.com/item/get?id=${id}`).then((response) => response.json()).then((data) => {
-      console.log(data.data.item.media[0])
+      console.log(data.data.item)
       setItem(data.data.item)
+      if (data.data.item.media['length'] > 0) {
+        setVideo(true)
+      }
     })
   }
 
@@ -47,7 +51,7 @@ const EventDetail = () => {
                 <div>
                   <p>
                     <strong> Image </strong>:
-                    <img src={ item.images['background'] } alt="background image" />
+                    <img src={ item.images['background'] } alt="background image" style={{backgroundColor: '#ADD8E6'}} />
                   </p>
                 </div>
             }
@@ -55,15 +59,15 @@ const EventDetail = () => {
           <div className="row">
             <div className="col-3">
               {
-                item.media &&
-                  <div>
-                    <p>
-                      <strong> Video </strong>:
-                        <video width="750" height="500" controls >
-                          <source src={item.media[0]['src']} type={item.media[0]['type']} />
-                        </video>
-                    </p>
-                  </div>
+                video &&
+                <div>
+                  <p>
+                    <strong> Video </strong>:
+                      <video width="750" height="500" controls >
+                        <source src={item.media[0]['src']} type={item.media[0]['type']} />
+                      </video>
+                  </p>
+                </div>
               }
             </div>
           </div>
