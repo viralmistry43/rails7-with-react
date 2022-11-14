@@ -1,11 +1,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import QuestionList from './QuestionList'
 import Nav from './Nav'
 import Event from './Event'
 import EventDetail from './EventDetail'
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
+import User from './User'
 
 class Welcome extends React.Component {
   render() {
@@ -14,6 +14,7 @@ class Welcome extends React.Component {
         <Nav />
         <Routes>
           <Route path="/" exact element={<Home/>}/>
+          <Route path="/user" exact element={<User/>}/>
           <Route path="/event" exact element={<Event/>}/>
           <Route path="/event/:id" element={<EventDetail/>}/>
           <Route path="/question-list" element={<QuestionList/>}/>

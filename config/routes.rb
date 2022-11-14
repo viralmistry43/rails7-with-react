@@ -8,6 +8,8 @@ Rails.application.routes.draw do
           put :update_counter, :answer
         end
       end
+
+      resources :users, except: [:show]
     end
   end
 
