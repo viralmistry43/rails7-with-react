@@ -14,6 +14,11 @@ const Nav = (props) => {
                     Home
                   </li>
                 </Link>
+                <Link to="/calculator">
+                  <li className="nav-item nav-link">
+                    Calculator
+                  </li>
+                </Link>
                 <Link to="/user">
                   <li className="nav-item nav-link">
                     User

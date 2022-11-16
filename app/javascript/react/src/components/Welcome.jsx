@@ -6,6 +6,7 @@ import Nav from './Nav'
 import Event from './Event'
 import EventDetail from './EventDetail'
 import User from './User'
+import Calculator from './Calculator'
 
 class Welcome extends React.Component {
   render() {
@@ -14,7 +15,8 @@ class Welcome extends React.Component {
         <Nav />
         <Routes>
           <Route path="/" exact element={<Home/>}/>
-          <Route path="/user" exact element={<User/>}/>
+          <Route path="/calculator" element={<Calculator/>}/>
+          <Route path="/user" element={<User/>}/>
           <Route path="/event" exact element={<Event/>}/>
           <Route path="/event/:id" element={<EventDetail/>}/>
           <Route path="/question-list" element={<QuestionList/>}/>
