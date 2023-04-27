@@ -1,6 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { useState, useEffect } from 'react'
+import axios from "axios";
 
 const User = () => {
 
@@ -44,10 +45,10 @@ const User = () => {
   const [users, setUsers] = useState([])
 
   const fetchUsers = () => {
-    fetch(`/api/v1/users`).then((response) => response.json()).then((data) => {
-      console.log(data)
-      setUsers(data)
-    })
+    axios.get(`/api/v1/users`).then((response) => {
+      console.log(response.data);
+      setUsers(response.data)
+    });
   }
 
   useEffect(() => {
@@ -76,28 +77,27 @@ const User = () => {
   }
 
   const createUser = (data) => {
-    fetch(`/api/v1/users`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    }).then((response) => response.json()).then((data) => {
-      console.log('Response:', data)
-      if (data.status === "success") {
+    axios.post(`/api/v1/users`, { user: data }).then((response) => {
+      console.log('Response:', response.data)
+      if (response.data.status === "success") {
         setIsError(false)
         setErrorMessage('')
         setIsSuccess(true)
-        setSuccessMessage(data.message)
+        setSuccessMessage(response.data.message)
         fetchUsers()
-      }else if (data.status === "failure") {
+      }
+    }).catch((error) => {
+      if (error.response.data.status === "failure") {
         setIsSuccess(false)
         setSuccessMessage('')
         setIsError(true)
-        setErrorMessage(data.message)
+        setErrorMessage(error.response.data.message)
+      } else {
+        setIsSuccess(false)
+        setSuccessMessage('')
+        setIsError(true)
+        setErrorMessage(error.message)
       }
-    }).catch((error) => {
-      console.log('Error:', error)
     })
   }
   // End Create User
@@ -127,28 +127,27 @@ const User = () => {
   const editUser = (data) => {
     console.log(data)
     console.log(id)
-    fetch(`/api/v1/users/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    }).then((response) => response.json()).then((data) => {
-      console.log('Response:', data)
-      if (data.status === "success") {
+    axios.put(`/api/v1/users/${id}`, { user: data }).then((response) => {
+      console.log('Response:', response.data)
+      if (response.data.status === "success") {
         setIsError(false)
         setErrorMessage('')
         setIsSuccess(true)
-        setSuccessMessage(data.message)
+        setSuccessMessage(response.data.message)
         fetchUsers()
-      }else if (data.status === "failure") {
+      }
+    }).catch((error) => {
+      if (error.response.data.status === "failure") {
         setIsSuccess(false)
         setSuccessMessage('')
         setIsError(true)
-        setErrorMessage(data.message)
+        setErrorMessage(error.response.data.message)
+      } else {
+        setIsSuccess(false)
+        setSuccessMessage('')
+        setIsError(true)
+        setErrorMessage(error.message)
       }
-    }).catch((error) => {
-      console.log('Error:', error)
     })
   }
   // End Edit User
@@ -164,27 +163,27 @@ const User = () => {
 
   const deleteUser = (id) => {
     console.log(id)
-    fetch(`/api/v1/users/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then((response) => response.json()).then((data) => {
-      console.log('Response:', data)
-      if (data.status === "success") {
+    axios.delete(`/api/v1/users/${id}`).then((response) => {
+      console.log('Response:', response.data)
+      if (response.data.status === "success") {
         setIsError(false)
         setErrorMessage('')
         setIsSuccess(true)
-        setSuccessMessage(data.message)
+        setSuccessMessage(response.data.message)
         fetchUsers()
-      }else if (data.status === "failure") {
+      }
+    }).catch((error) => {
+      if (error.response.data.status === "failure") {
         setIsSuccess(false)
         setSuccessMessage('')
         setIsError(true)
-        setErrorMessage(data.message)
+        setErrorMessage(error.response.data.message)
+      } else {
+        setIsSuccess(false)
+        setSuccessMessage('')
+        setIsError(true)
+        setErrorMessage(error.message)
       }
-    }).catch((error) => {
-      console.log('Error:', error)
     })
   }
   // End Delete User
