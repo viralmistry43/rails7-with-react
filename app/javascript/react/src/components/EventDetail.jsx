@@ -13,7 +13,7 @@ const EventDetail = () => {
 
   // const { id } = useParams();
   // const [item, setItem] = useState({})
-  // const [video, setVideo] = useState(false)
+  const [video, setVideo] = useState(false)
 
   // const fetchItem = () => {
   //   fetch(`https://fortnite-api.theapinetwork.com/item/get?id=${id}`).then((response) => response.json()).then((data) => {
