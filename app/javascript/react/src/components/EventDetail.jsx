@@ -3,27 +3,36 @@ import { useState, useEffect } from 'react'
 import * as ReactDOM from 'react-dom'
 import { Link } from "react-router-dom"
 import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 
 const EventDetail = () => {
 
-  const { id } = useParams();
-  const [item, setItem] = useState({})
-  const [video, setVideo] = useState(false)
+  const location = useLocation();
+  const item = location.state;
 
-  const fetchItem = () => {
-    fetch(`https://fortnite-api.theapinetwork.com/item/get?id=${id}`).then((response) => response.json()).then((data) => {
-      console.log(data.data.item)
-      setItem(data.data.item)
-      if (data.data.item.media['length'] > 0) {
-        setVideo(true)
-      }
-    })
-  }
+  // const { id } = useParams();
+  // const [item, setItem] = useState({})
+  // const [video, setVideo] = useState(false)
+
+  // const fetchItem = () => {
+  //   fetch(`https://fortnite-api.theapinetwork.com/item/get?id=${id}`).then((response) => response.json()).then((data) => {
+  //     console.log(data.data.item)
+  //     setItem(data.data.item)
+  //     if (data.data.item.media['length'] > 0) {
+  //       setVideo(true)
+  //     }
+  //   })
+  // }
 
   useEffect(() => {
-    fetchItem()
-    console.log(id)
+    // fetchItem()
+    // console.log(id)
+    console.log(item);
+    if (item.media && item.media['length'] > 0) {
+      setVideo(true)
+    }
+
   }, [])
 
   return(
@@ -51,7 +60,7 @@ const EventDetail = () => {
                 <div>
                   <p>
                     <strong> Image </strong>:
-                    <img src={ item.images['background'] } alt="background image" style={{backgroundColor: '#ADD8E6'}} />
+                    <img src={ item.images['transparent'] } alt="background image" style={{backgroundColor: '#ADD8E6'}} />
                   </p>
                 </div>
             }

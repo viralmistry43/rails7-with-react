@@ -26,7 +26,7 @@ const Event = () => {
           items.map(item_type => (
             item_type.entries.map(item => (
               <h3 key={item.identifier}>
-                <Link to={`/event/${item.identifier}`}> {item.name} </Link>
+                <Link to={`/event/${item.identifier}`} state={item}> {item.name} </Link>
               </h3>
             ))
           ))
